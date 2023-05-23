@@ -1,7 +1,7 @@
 # jspractice_rockpaperscissors
 
-#Goal
+# Goal
 To create a rock paper scissors game to practice JavaScript.
 
-#Skills Demonstrated
+# Skills Demonstrated
 Basic knowledge of JavaScript
