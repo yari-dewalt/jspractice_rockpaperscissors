@@ -9,6 +9,11 @@ body {
     align-items: center;
 }
 
+img {
+    max-height: 100px;
+    max-width: 100px;
+}
+
 .buttons {
     height: 200px;
     width: 100%;
@@ -18,18 +23,33 @@ body {
     gap: 6%;
 }
 
+button {
+    height: 200px;
+    width: 200px;
+    background-color: #2d3947;
+}
+
 .results {
     height: 100px;
     width: 100%;
+    margin-top: 40px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
     font-size: 32px;
 }
 
-button {
-    height: 200px;
-    width: 200px;
-    background-color: #2d3947;
+#result {
+    margin: 0;
+}
+
+#score {
+    margin: 40px 0px 0px 0px;
+}
+
+#intro-text {
+    color: white;
+    margin-bottom: 100px;
 }

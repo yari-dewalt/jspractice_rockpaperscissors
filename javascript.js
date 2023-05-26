@@ -24,84 +24,103 @@ buttons.forEach((button) => {
         });
     });
 
-const playRound = (playerChoice) => {
-    computerChoice = getComputerChoice();
-
-    const para = document.querySelector("#result");
-
-    console.log("You chose: " + playerChoice);
-    console.log("The computer chose: " + computerChoice + "\n\n");
-
-    if (playerChoice === computerChoice) {
-        //console.log("Tie! " + playerChoice + " against " + computerChoice);
-        para.textContent = "Tie! " + playerChoice + " against " + computerChoice;
-        return false;
-    }
-
-    else if (playerChoice === "rock" && computerChoice === "paper") {
-        //console.log("You Lose! Paper beats Rock!");
-        para.textContent = "You Lose! Paper beats Rock!";
-        return false;
-    }
-
-    else if (playerChoice === "rock" && computerChoice == "scissors") {
-        //console.log("You Win! Rock beats Scissors!");
-        para.textContent = "You Win! Rock beats Scissors!";
+const checkWin = (playerScore, computerScore, resultText) => {
+    if (playerScore === 5) {
+        resultText.textContent = "You Won!!!";
+        playerScore = 0;
+        computerScore = 0;
         return true;
     }
 
-    else if (playerChoice === "paper" && computerChoice === "scissors") {
-        //console.log("You Lose! Scissors beat Paper!");
-        para.textContent = "You Lose! Scissors beat Paper!";
-        return false;
-    }
-
-    else if (playerChoice === "paper" && computerChoice === "rock") {
-        //console.log("You Win! Paper beats Rock!");
-        para.textContent = "You Win! Paper beats Rock!";
+    else if (computerScore === 5) {
+        resultText.textContent = "You Lost!!!";
+        playerScore = 0;
+        computerScore = 0;
         return true;
-    }
-
-    else if (playerChoice === "scissors" && computerChoice === "rock") {
-        //console.log("You Lose! Rock beats Scissors!");
-        para.textContent = "You Lose! Rock beats Scissors!";
-        return false;
-    }
-
-    else if (playerChoice === "scissors" && computerChoice === "paper") {
-        //console.log("You Win! Scissors beat Paper!");
-        para.textContent = "You Win! Scissors beat Paper!";
-        return false;
     }
 }
 
-/*function game() {
-    let playerWins = 0;
-    let computerWins = 0;
+let playerScore = 0;
+let computerScore = 0;
 
-    for (let i = 0; i < 5; i++) {
-        let round = playRound();
+const playRound = (playerChoice) => {
+    computerChoice = getComputerChoice();
 
-        if (round) {
-            playerWins++;
+    const resultText = document.querySelector("#result");
+    const scoreText = document.querySelector("#score");
+
+    if (playerChoice === computerChoice) {
+        resultText.textContent = "Tie! " + playerChoice + " against " + computerChoice;
+        scoreText.textContent = `👨: ${playerScore} 🤖: ${computerScore}`;
+        if (checkWin(playerScore, computerScore, resultText)) {
+            playerScore = 0;
+            computerScore = 0;
         }
+    }
 
-        else {
-            computerWins++;
+    else if (playerChoice === "rock" && computerChoice === "paper") {
+        computerScore += 1;
+        resultText.textContent = "You lost the round! Paper beats Rock!";
+        scoreText.textContent = `👨: ${playerScore} 🤖: ${computerScore}`;
+
+        if (checkWin(playerScore, computerScore, resultText)) {
+            playerScore = 0;
+            computerScore = 0;
         }
-
-        console.log("\nPlayer: " + playerWins + " Computer: " + computerWins + '\n\n');
     }
 
-    if (playerWins > computerWins) {
-        console.log("\n\nCongratulations! You Win!!!");
+    else if (playerChoice === "rock" && computerChoice == "scissors") {
+        playerScore += 1;
+        resultText.textContent = "You won the round! Rock beats Scissors!";
+        scoreText.textContent = `👨: ${playerScore} 🤖: ${computerScore}`;
+
+        if (checkWin(playerScore, computerScore, resultText)) {
+            playerScore = 0;
+            computerScore = 0;
+        }
     }
 
-    else if (playerWins < computerWins) {
-        console.log("\n\nOh no! You Lost!!!");
+    else if (playerChoice === "paper" && computerChoice === "scissors") {
+        computerScore += 1;
+        resultText.textContent = "You lost the round! Scissors beat Paper!";
+        scoreText.textContent = `👨: ${playerScore} 🤖: ${computerScore}`;
+
+        if (checkWin(playerScore, computerScore, resultText)) {
+            playerScore = 0;
+            computerScore = 0;
+        }
     }
 
-    else {
-        console.log("You Tied!!!");
+    else if (playerChoice === "paper" && computerChoice === "rock") {
+        playerScore += 1;
+        resultText.textContent = "You won the round! Paper beats Rock!";
+        scoreText.textContent = `👨: ${playerScore} 🤖: ${computerScore}`;
+
+        if (checkWin(playerScore, computerScore, resultText)) {
+            playerScore = 0;
+            computerScore = 0;
+        }
     }
-}*/
+
+    else if (playerChoice === "scissors" && computerChoice === "rock") {
+        computerScore += 1;
+        resultText.textContent = "You lost the round! Rock beats Scissors!";
+        scoreText.textContent = `👨: ${playerScore} 🤖: ${computerScore}`;
+
+        if (checkWin(playerScore, computerScore, resultText)) {
+            playerScore = 0;
+            computerScore = 0;
+        }
+    }
+
+    else if (playerChoice === "scissors" && computerChoice === "paper") {
+        playerScore += 1;
+        resultText.textContent = "You won the round! Scissors beat Paper!";
+        scoreText.textContent = `👨: ${playerScore} 🤖: ${computerScore}`;
+
+        if (checkWin(playerScore, computerScore, resultText)) {
+            playerScore = 0;
+            computerScore = 0;
+        }
+    }
+}
