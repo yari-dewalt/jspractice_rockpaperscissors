@@ -14,62 +14,68 @@ const getComputerChoice = () => {
     }
 }
 
-const getPlayerChoice = () => {
-    let choice = prompt("Please choose  Rock, Paper, or Scissors");
-    choice = choice.toLowerCase();
+const buttons = document.querySelectorAll("button");
 
-    while(choice != "rock" && choice != "paper" && choice != "scissors") {
-        choice = prompt("Please try again. Choose either Rock, Paper, or Scissors");
-        choice = choice.toLowerCase();
-    }
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const choice = button.id;
+        console.log(choice);
+        playRound(choice);
+        });
+    });
 
-    return choice;
-}
-
-const playRound = () => {
-    playerChoice = getPlayerChoice();
+const playRound = (playerChoice) => {
     computerChoice = getComputerChoice();
+
+    const para = document.querySelector("#result");
 
     console.log("You chose: " + playerChoice);
     console.log("The computer chose: " + computerChoice + "\n\n");
 
     if (playerChoice === computerChoice) {
-        console.log("Tie! " + playerChoice + " against " + computerChoice);
+        //console.log("Tie! " + playerChoice + " against " + computerChoice);
+        para.textContent = "Tie! " + playerChoice + " against " + computerChoice;
         return false;
     }
 
     else if (playerChoice === "rock" && computerChoice === "paper") {
-        console.log("You Lose! Paper beats Rock!");
+        //console.log("You Lose! Paper beats Rock!");
+        para.textContent = "You Lose! Paper beats Rock!";
         return false;
     }
 
     else if (playerChoice === "rock" && computerChoice == "scissors") {
-        console.log("You Win! Rock beats Scissors!");
+        //console.log("You Win! Rock beats Scissors!");
+        para.textContent = "You Win! Rock beats Scissors!";
         return true;
     }
 
     else if (playerChoice === "paper" && computerChoice === "scissors") {
-        console.log("You Lose! Scissors beat Paper!");
+        //console.log("You Lose! Scissors beat Paper!");
+        para.textContent = "You Lose! Scissors beat Paper!";
         return false;
     }
 
     else if (playerChoice === "paper" && computerChoice === "rock") {
-        console.log("You Win! Paper beats Rock!");
+        //console.log("You Win! Paper beats Rock!");
+        para.textContent = "You Win! Paper beats Rock!";
         return true;
     }
 
     else if (playerChoice === "scissors" && computerChoice === "rock") {
-        console.log("You Lose! Rock beats Scissors!");
+        //console.log("You Lose! Rock beats Scissors!");
+        para.textContent = "You Lose! Rock beats Scissors!";
         return false;
     }
 
     else if (playerChoice === "scissors" && computerChoice === "paper") {
-        console.log("You Win! Scissors beat Paper!");
+        //console.log("You Win! Scissors beat Paper!");
+        para.textContent = "You Win! Scissors beat Paper!";
         return false;
     }
 }
 
-function game() {
+/*function game() {
     let playerWins = 0;
     let computerWins = 0;
 
@@ -98,4 +104,4 @@ function game() {
     else {
         console.log("You Tied!!!");
     }
-}
+}*/
